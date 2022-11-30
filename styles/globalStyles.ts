@@ -1,6 +1,8 @@
 import { css } from "@emotion/react";
 
 export const globalStyles = css`
+  @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
   * {
     margin: 0;
     padding: 0;
@@ -26,6 +28,7 @@ export const globalStyles = css`
   html,
   body {
     height: 100%;
+    font-family: "Spoqa Han Sans Neo", sans-serif;
   }
   img,
   picture,
