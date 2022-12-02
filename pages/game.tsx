@@ -10,7 +10,7 @@ const GamePage = () => {
   return (
     <div>
       {isLoading ? <Loading /> : <GameBoard word={word} />}
-      <KeyboardList />
+      <KeyboardList word={word} />
     </div>
   );
 };
