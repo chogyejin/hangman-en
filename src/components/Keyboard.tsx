@@ -1,31 +1,21 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { hasLetter } from "../lib/utils/hasLetter";
 
 interface Props {
   char: string;
-  word: string;
+  onSelect: (letter: string) => void;
 }
 
-const Keyboard = ({ char, word }: Props) => {
+const Keyboard = ({ char, onSelect }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
 
-  const handleClick = (selectedChar: string) => {
+  const handleClick = () => {
     setIsVisible(false);
-    if (hasLetter(word, selectedChar)) {
-      console.log("포함");
-      return;
-    }
-    console.log("안 포함");
+    onSelect(char.toLocaleLowerCase());
   };
-  console.log(isVisible);
 
   return (
-    <Button
-      isVisible={isVisible}
-      disabled={!isVisible}
-      onClick={() => handleClick(char)}
-    >
+    <Button isVisible={isVisible} disabled={!isVisible} onClick={handleClick}>
       {char}
     </Button>
   );

@@ -3,14 +3,14 @@ import { ALPAHBET } from "../constants";
 import Keyboard from "./Keyboard";
 
 interface Props {
-  word: string;
+  onSelect: (letter: string) => void;
 }
 
-const KeyboardList = ({ word }: Props) => {
+const KeyboardList = ({ onSelect }: Props) => {
   return (
     <Wrapper>
       {ALPAHBET.map((char) => (
-        <Keyboard key={char} char={char} word={word} />
+        <Keyboard key={char} char={char} onSelect={onSelect} />
       ))}
     </Wrapper>
   );
