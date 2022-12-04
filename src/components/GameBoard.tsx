@@ -3,14 +3,19 @@ import Letter from "./Letter";
 
 interface Props {
   word: string;
+  selectedLetters: string;
 }
 
-const GameBoard = ({ word }: Props) => {
+const GameBoard = ({ word, selectedLetters }: Props) => {
   return (
     <Container>
       <Wrapper>
         {word.split("").map((letter, index) => (
-          <Letter key={index} letter={letter} />
+          <Letter
+            key={index}
+            letter={letter}
+            selectedLetters={selectedLetters}
+          />
         ))}
       </Wrapper>
     </Container>

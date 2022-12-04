@@ -1,15 +1,22 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
+import { hasLetter } from "../lib/utils/hasLetter";
 
 interface Props {
   letter: string;
+  selectedLetters: string;
 }
 
-const Letter = ({ letter }: Props) => {
-  return <LetterBox></LetterBox>;
+const Letter = ({ letter, selectedLetters }: Props) => {
+  return (
+    <LetterBox>{hasLetter(selectedLetters, letter) ? letter : ""}</LetterBox>
+  );
 };
 
 const LetterBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 30px;
   height: 30px;
   font-size: 30px;
