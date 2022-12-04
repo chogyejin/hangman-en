@@ -2,21 +2,14 @@ import GameBoard from "../src/components/GameBoard";
 import KeyboardList from "../src/components/KeyboardList";
 import Loading from "../src/components/Loading";
 import useWord from "../src/hooks/useWord";
-import { useState } from "react";
-import { hasLetter } from "../src/lib/utils/hasLetter";
+import useGuessing from "../src/hooks/useGuessing";
 
 const GamePage = () => {
   const { word, isLoading } = useWord();
-  const [guessing, setGuessing] = useState({
-    selectedLetters: "",
-    count: 0,
-  });
+  const { guessing, handleGuessing } = useGuessing(word);
 
   const handleSelect = (letter: string) => {
-    setGuessing((prev) => ({
-      selectedLetters: prev.selectedLetters + letter,
-      count: hasLetter(word, letter) ? prev.count : prev.count + 1,
-    }));
+    handleGuessing(letter);
   };
 
   return (
