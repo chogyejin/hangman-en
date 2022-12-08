@@ -1,23 +1,29 @@
 import styled from "@emotion/styled";
 import Letter from "./Letter";
+import Retry from "./Retry";
 
 interface Props {
   word: string;
   selectedLetters: string;
+  isEnd: boolean;
 }
 
-const GameBoard = ({ word, selectedLetters }: Props) => {
+const GameBoard = ({ word, selectedLetters, isEnd }: Props) => {
   return (
     <Container>
-      <Wrapper>
-        {word.split("").map((letter, index) => (
-          <Letter
-            key={index}
-            letter={letter}
-            selectedLetters={selectedLetters}
-          />
-        ))}
-      </Wrapper>
+      {isEnd ? (
+        <Retry />
+      ) : (
+        <Wrapper>
+          {word.split("").map((letter, index) => (
+            <Letter
+              key={index}
+              letter={letter}
+              selectedLetters={selectedLetters}
+            />
+          ))}
+        </Wrapper>
+      )}
     </Container>
   );
 };
