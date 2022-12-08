@@ -26,3 +26,5 @@ export const ALPAHBET = [
   "Y",
   "Z",
 ];
+
+export const MAX_COUNT = 5;

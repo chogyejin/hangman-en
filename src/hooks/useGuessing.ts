@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MAX_COUNT } from "../constants";
 import { hasLetter } from "../lib/utils/hasLetter";
 
 const useGuessing = (word: string) => {
@@ -6,6 +7,7 @@ const useGuessing = (word: string) => {
     selectedLetters: "",
     count: 0,
   });
+  const [isEnd, setIsEnd] = useState(false);
 
   const handleGuessing = (letter: string) => {
     setGuessing((prev) => ({
@@ -14,7 +16,13 @@ const useGuessing = (word: string) => {
     }));
   };
 
-  return { guessing, handleGuessing };
+  useEffect(() => {
+    if (guessing.count === MAX_COUNT) {
+      setIsEnd(true);
+    }
+  }, [guessing.count]);
+
+  return { guessing, handleGuessing, isEnd };
 };
 
 export default useGuessing;
