@@ -1,12 +1,8 @@
-import instance from "../../src/lib/axios";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { fetchRandomword } from "../../src/lib/api/randomword";
 
-type Data = {
-  word: string;
-};
-
-const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const response = await instance.get("/randomword");
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const response = await fetchRandomword();
   res.status(200).json({ word: response.data.word });
 };
 
