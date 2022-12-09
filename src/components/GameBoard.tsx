@@ -4,25 +4,26 @@ import Retry from "./Retry";
 
 interface Props {
   word: string;
-  selectedLetters: string;
+  correctLetters: string;
   isEnd: boolean;
+  isAnswer: boolean;
 }
 
-const GameBoard = ({ word, selectedLetters, isEnd }: Props) => {
+const GameBoard = ({ word, correctLetters, isEnd, isAnswer }: Props) => {
   return (
     <Container>
-      {isEnd ? (
-        <Retry />
-      ) : (
+      {!isEnd && !isAnswer ? (
         <Wrapper>
           {word.split("").map((letter, index) => (
             <Letter
               key={index}
               letter={letter}
-              selectedLetters={selectedLetters}
+              correctLetters={correctLetters}
             />
           ))}
         </Wrapper>
+      ) : (
+        <Retry isEnd={isEnd} isAnswer={isAnswer} />
       )}
     </Container>
   );
