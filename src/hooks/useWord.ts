@@ -14,7 +14,6 @@ const useWord = () => {
     const fetchWord = async () => {
       try {
         const res = await axios.get<Data>("/api/randomword");
-        console.log(res);
         if (res.status === 200) {
           setWord(res.data.word);
         }

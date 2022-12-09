@@ -1,16 +1,13 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
-import { hasLetter } from "../lib/utils/hasLetter";
+import React from "react";
 
 interface Props {
   letter: string;
-  selectedLetters: string;
+  correctLetters: string;
 }
 
-const Letter = ({ letter, selectedLetters }: Props) => {
-  return (
-    <LetterBox>{hasLetter(selectedLetters, letter) ? letter : ""}</LetterBox>
-  );
+const Letter = ({ letter, correctLetters }: Props) => {
+  return <LetterBox>{correctLetters.includes(letter) ? letter : ""}</LetterBox>;
 };
 
 const LetterBox = styled.div`
