@@ -6,7 +6,7 @@ import useGuessing from "../src/hooks/useGuessing";
 
 const GamePage = () => {
   const { word, isLoading } = useWord();
-  const { guessing, handleGuessing, isEnd } = useGuessing(word);
+  const { guessing, handleGuessing, isEnd, isAnswer } = useGuessing(word);
 
   const handleSelect = (letter: string) => {
     handleGuessing(letter);
@@ -19,8 +19,9 @@ const GamePage = () => {
       ) : (
         <GameBoard
           word={word}
-          selectedLetters={guessing.selectedLetters}
+          correctLetters={guessing.correctLetters}
           isEnd={isEnd}
+          isAnswer={isAnswer}
         />
       )}
       <KeyboardList onSelect={handleSelect} />

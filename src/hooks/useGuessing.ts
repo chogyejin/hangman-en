@@ -1,20 +1,32 @@
 import { useEffect, useState } from "react";
 import { MAX_COUNT } from "../constants";
-import { hasLetter } from "../lib/utils/hasLetter";
 
 const useGuessing = (word: string) => {
   const [guessing, setGuessing] = useState({
     selectedLetters: "",
+    correctLetters: "",
     count: 0,
   });
   const [isEnd, setIsEnd] = useState(false);
+  const [isAnswer, setIsAnswer] = useState(false);
 
   const handleGuessing = (letter: string) => {
     setGuessing((prev) => ({
+      ...prev,
       selectedLetters: prev.selectedLetters + letter,
-      count: hasLetter(word, letter) ? prev.count : prev.count + 1,
+      count: word.includes(letter) ? prev.count : prev.count + 1,
     }));
   };
+
+  useEffect(() => {
+    setGuessing((prev) => ({
+      ...prev,
+      correctLetters: word
+        .split("")
+        .map((char) => (guessing.selectedLetters.includes(char) ? char : "_"))
+        .join(""),
+    }));
+  }, [guessing.selectedLetters, word]);
 
   useEffect(() => {
     if (guessing.count === MAX_COUNT) {
@@ -22,7 +34,13 @@ const useGuessing = (word: string) => {
     }
   }, [guessing.count]);
 
-  return { guessing, handleGuessing, isEnd };
+  useEffect(() => {
+    if (word && guessing.correctLetters === word) {
+      setIsAnswer(true);
+    }
+  }, [guessing.correctLetters, word]);
+
+  return { guessing, handleGuessing, isEnd, isAnswer };
 };
 
 export default useGuessing;
