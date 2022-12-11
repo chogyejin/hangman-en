@@ -7,9 +7,16 @@ interface Props {
   correctLetters: string;
   isEnd: boolean;
   isAnswer: boolean;
+  resetGame: () => void;
 }
 
-const GameBoard = ({ word, correctLetters, isEnd, isAnswer }: Props) => {
+const GameBoard = ({
+  word,
+  correctLetters,
+  isEnd,
+  isAnswer,
+  resetGame,
+}: Props) => {
   return (
     <Container>
       {!isEnd && !isAnswer ? (
@@ -23,7 +30,7 @@ const GameBoard = ({ word, correctLetters, isEnd, isAnswer }: Props) => {
           ))}
         </Wrapper>
       ) : (
-        <Retry isEnd={isEnd} isAnswer={isAnswer} />
+        <Retry isEnd={isEnd} isAnswer={isAnswer} resetGame={resetGame} />
       )}
     </Container>
   );

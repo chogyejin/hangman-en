@@ -4,13 +4,19 @@ import Keyboard from "./Keyboard";
 
 interface Props {
   onSelect: (letter: string) => void;
+  isNewGame: boolean;
 }
 
-const KeyboardList = ({ onSelect }: Props) => {
+const KeyboardList = ({ onSelect, isNewGame }: Props) => {
   return (
     <Wrapper>
       {ALPAHBET.map((char) => (
-        <Keyboard key={char} char={char} onSelect={onSelect} />
+        <Keyboard
+          key={char}
+          char={char}
+          onSelect={onSelect}
+          isNewGame={isNewGame}
+        />
       ))}
     </Wrapper>
   );

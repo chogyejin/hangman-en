@@ -3,11 +3,12 @@ import styled from "@emotion/styled";
 interface Props {
   isEnd: boolean;
   isAnswer: boolean;
+  resetGame: () => void;
 }
 
-const Retry = ({ isEnd, isAnswer }: Props) => {
+const Retry = ({ isEnd, isAnswer, resetGame }: Props) => {
   const handleClick = () => {
-    console.log("retry");
+    resetGame();
   };
 
   return (

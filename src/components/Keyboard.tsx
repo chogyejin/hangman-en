@@ -1,13 +1,18 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   char: string;
   onSelect: (letter: string) => void;
+  isNewGame: boolean;
 }
 
-const Keyboard = ({ char, onSelect }: Props) => {
+const Keyboard = ({ char, onSelect, isNewGame }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, [isNewGame]);
 
   const handleClick = () => {
     setIsVisible(false);

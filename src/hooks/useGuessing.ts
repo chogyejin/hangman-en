@@ -18,6 +18,16 @@ const useGuessing = (word: string) => {
     }));
   };
 
+  const reset = () => {
+    setGuessing({
+      selectedLetters: "",
+      correctLetters: "",
+      count: 0,
+    });
+    setIsEnd(false);
+    setIsAnswer(false);
+  };
+
   useEffect(() => {
     setGuessing((prev) => ({
       ...prev,
@@ -40,7 +50,7 @@ const useGuessing = (word: string) => {
     }
   }, [guessing.correctLetters, word]);
 
-  return { guessing, handleGuessing, isEnd, isAnswer };
+  return { guessing, handleGuessing, isEnd, isAnswer, reset };
 };
 
 export default useGuessing;

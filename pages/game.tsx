@@ -3,13 +3,22 @@ import KeyboardList from "../src/components/KeyboardList";
 import Loading from "../src/components/Loading";
 import useWord from "../src/hooks/useWord";
 import useGuessing from "../src/hooks/useGuessing";
+import { useState } from "react";
 
 const GamePage = () => {
-  const { word, isLoading } = useWord();
-  const { guessing, handleGuessing, isEnd, isAnswer } = useGuessing(word);
+  const { word, isLoading, refetch } = useWord();
+  const { guessing, handleGuessing, isEnd, isAnswer, reset } =
+    useGuessing(word);
+  const [isNewGame, setIsNewGame] = useState(false);
 
   const handleSelect = (letter: string) => {
     handleGuessing(letter);
+  };
+
+  const resetGame = () => {
+    setIsNewGame((prev) => !prev);
+    reset();
+    refetch();
   };
 
   return (
@@ -22,9 +31,10 @@ const GamePage = () => {
           correctLetters={guessing.correctLetters}
           isEnd={isEnd}
           isAnswer={isAnswer}
+          resetGame={resetGame}
         />
       )}
-      <KeyboardList onSelect={handleSelect} />
+      <KeyboardList onSelect={handleSelect} isNewGame={isNewGame} />
     </div>
   );
 };
