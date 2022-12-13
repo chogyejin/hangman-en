@@ -4,9 +4,10 @@ import { Result } from "../hooks/useGuessing";
 interface Props {
   result: Result;
   resetGame: () => void;
+  word: string;
 }
 
-const Retry = ({ result, resetGame }: Props) => {
+const Retry = ({ result, resetGame, word }: Props) => {
   const { isLose, isWin } = result;
   const handleClick = () => {
     resetGame();
@@ -23,6 +24,7 @@ const Retry = ({ result, resetGame }: Props) => {
       {isWin && (
         <>
           <div>You win</div>
+          <div>Answer is {word}</div>
           <Button onClick={handleClick}>New game?</Button>
         </>
       )}

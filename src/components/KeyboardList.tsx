@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
 import { ALPAHBET } from "../constants";
+import { Result } from "../hooks/useGuessing";
 import Keyboard from "./Keyboard";
 
 interface Props {
   onSelect: (letter: string) => void;
   isNewGame: boolean;
+  result: Result;
 }
 
-const KeyboardList = ({ onSelect, isNewGame }: Props) => {
+const KeyboardList = ({ onSelect, isNewGame, result }: Props) => {
   return (
     <Wrapper>
       {ALPAHBET.map((char) => (
@@ -16,6 +18,7 @@ const KeyboardList = ({ onSelect, isNewGame }: Props) => {
           char={char}
           onSelect={onSelect}
           isNewGame={isNewGame}
+          result={result}
         />
       ))}
     </Wrapper>

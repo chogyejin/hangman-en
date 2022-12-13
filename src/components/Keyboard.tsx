@@ -1,13 +1,16 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { Result } from "../hooks/useGuessing";
 
 interface Props {
   char: string;
   onSelect: (letter: string) => void;
   isNewGame: boolean;
+  result: Result;
 }
 
-const Keyboard = ({ char, onSelect, isNewGame }: Props) => {
+const Keyboard = ({ char, onSelect, isNewGame, result }: Props) => {
+  const { isLose, isWin } = result;
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -15,6 +18,10 @@ const Keyboard = ({ char, onSelect, isNewGame }: Props) => {
   }, [isNewGame]);
 
   const handleClick = () => {
+    if (isLose || isWin) {
+      return;
+    }
+
     setIsVisible(false);
     onSelect(char.toLocaleLowerCase());
   };

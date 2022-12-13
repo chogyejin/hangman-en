@@ -26,7 +26,7 @@ const GameBoard = ({ word, correctLetters, result, resetGame }: Props) => {
           ))}
         </Wrapper>
       ) : (
-        <Retry result={result} resetGame={resetGame} />
+        <Retry result={result} resetGame={resetGame} word={word} />
       )}
     </Container>
   );

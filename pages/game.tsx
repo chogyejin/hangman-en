@@ -32,7 +32,11 @@ const GamePage = () => {
           resetGame={resetGame}
         />
       )}
-      <KeyboardList onSelect={handleSelect} isNewGame={isNewGame} />
+      <KeyboardList
+        onSelect={handleSelect}
+        isNewGame={isNewGame}
+        result={result}
+      />
     </div>
   );
 };
