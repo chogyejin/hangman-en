@@ -7,8 +7,7 @@ import { useState } from "react";
 
 const GamePage = () => {
   const { word, isLoading, refetch } = useWord();
-  const { guessing, handleGuessing, isEnd, isAnswer, reset } =
-    useGuessing(word);
+  const { guessing, result, handleGuessing, reset } = useGuessing(word);
   const [isNewGame, setIsNewGame] = useState(false);
 
   const handleSelect = (letter: string) => {
@@ -29,8 +28,7 @@ const GamePage = () => {
         <GameBoard
           word={word}
           correctLetters={guessing.correctLetters}
-          isEnd={isEnd}
-          isAnswer={isAnswer}
+          result={result}
           resetGame={resetGame}
         />
       )}

@@ -1,25 +1,21 @@
 import styled from "@emotion/styled";
+import { Result } from "../hooks/useGuessing";
 import Letter from "./Letter";
 import Retry from "./Retry";
 
 interface Props {
   word: string;
   correctLetters: string;
-  isEnd: boolean;
-  isAnswer: boolean;
+  result: Result;
   resetGame: () => void;
 }
 
-const GameBoard = ({
-  word,
-  correctLetters,
-  isEnd,
-  isAnswer,
-  resetGame,
-}: Props) => {
+const GameBoard = ({ word, correctLetters, result, resetGame }: Props) => {
+  const { isLose, isWin } = result;
+
   return (
     <Container>
-      {!isEnd && !isAnswer ? (
+      {!isLose && !isWin ? (
         <Wrapper>
           {word.split("").map((letter, index) => (
             <Letter
@@ -30,7 +26,7 @@ const GameBoard = ({
           ))}
         </Wrapper>
       ) : (
-        <Retry isEnd={isEnd} isAnswer={isAnswer} resetGame={resetGame} />
+        <Retry result={result} resetGame={resetGame} />
       )}
     </Container>
   );

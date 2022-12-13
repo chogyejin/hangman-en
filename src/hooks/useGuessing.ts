@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { MAX_COUNT } from "../constants";
 
+export type Result = {
+  isLose: boolean;
+  isWin: boolean;
+};
+
 const useGuessing = (word: string) => {
   const [guessing, setGuessing] = useState({
     selectedLetters: "",
     correctLetters: "",
     count: 0,
   });
-  const [isEnd, setIsEnd] = useState(false);
-  const [isAnswer, setIsAnswer] = useState(false);
+  const [result, setResult] = useState<Result>({
+    isLose: false,
+    isWin: false,
+  });
 
   const handleGuessing = (letter: string) => {
     setGuessing((prev) => ({
@@ -24,8 +31,10 @@ const useGuessing = (word: string) => {
       correctLetters: "",
       count: 0,
     });
-    setIsEnd(false);
-    setIsAnswer(false);
+    setResult({
+      isLose: false,
+      isWin: false,
+    });
   };
 
   useEffect(() => {
@@ -40,17 +49,28 @@ const useGuessing = (word: string) => {
 
   useEffect(() => {
     if (guessing.count === MAX_COUNT) {
-      setIsEnd(true);
+      setResult((prev) => ({
+        ...prev,
+        isLose: true,
+      }));
     }
   }, [guessing.count]);
 
   useEffect(() => {
     if (word && guessing.correctLetters === word) {
-      setIsAnswer(true);
+      setResult((prev) => ({
+        ...prev,
+        isWin: true,
+      }));
     }
   }, [guessing.correctLetters, word]);
 
-  return { guessing, handleGuessing, isEnd, isAnswer, reset };
+  return {
+    guessing,
+    result,
+    handleGuessing,
+    reset,
+  };
 };
 
 export default useGuessing;

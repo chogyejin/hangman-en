@@ -1,25 +1,26 @@
 import styled from "@emotion/styled";
+import { Result } from "../hooks/useGuessing";
 
 interface Props {
-  isEnd: boolean;
-  isAnswer: boolean;
+  result: Result;
   resetGame: () => void;
 }
 
-const Retry = ({ isEnd, isAnswer, resetGame }: Props) => {
+const Retry = ({ result, resetGame }: Props) => {
+  const { isLose, isWin } = result;
   const handleClick = () => {
     resetGame();
   };
 
   return (
     <Container>
-      {isEnd && (
+      {isLose && (
         <>
           <div>You lose</div>
           <Button onClick={handleClick}>Retry?</Button>
         </>
       )}
-      {isAnswer && (
+      {isWin && (
         <>
           <div>You win</div>
           <Button onClick={handleClick}>New game?</Button>
