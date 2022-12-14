@@ -28,6 +28,7 @@ const GamePage = () => {
         <GameBoard
           word={word}
           correctLetters={guessing.correctLetters}
+          count={guessing.count}
           result={result}
           resetGame={resetGame}
         />

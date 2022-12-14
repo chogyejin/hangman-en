@@ -27,4 +27,15 @@ export const ALPAHBET = [
   "Z",
 ];
 
-export const MAX_COUNT = 5;
+export const DRAW_LIST = [
+  "null",
+  "gallows",
+  "head",
+  "body",
+  "rightHarm",
+  "leftHarm",
+  "rightLeg",
+  "leftLeg",
+];
+
+export const MAX_COUNT = DRAW_LIST.length - 1;

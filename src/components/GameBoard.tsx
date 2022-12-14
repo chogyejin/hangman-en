@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Result } from "../hooks/useGuessing";
+import HangManCanvas from "./HangManCanvas";
 import Letter from "./Letter";
 import Retry from "./Retry";
 
@@ -8,9 +9,16 @@ interface Props {
   correctLetters: string;
   result: Result;
   resetGame: () => void;
+  count: number;
 }
 
-const GameBoard = ({ word, correctLetters, result, resetGame }: Props) => {
+const GameBoard = ({
+  word,
+  correctLetters,
+  result,
+  resetGame,
+  count,
+}: Props) => {
   const { isLose, isWin } = result;
 
   const handleClick = () => {
@@ -19,6 +27,7 @@ const GameBoard = ({ word, correctLetters, result, resetGame }: Props) => {
 
   return (
     <Container>
+      <HangManCanvas count={count} />
       {!isLose && !isWin ? (
         <Wrapper>
           {word.split("").map((letter, index) => (
@@ -41,14 +50,15 @@ const GameBoard = ({ word, correctLetters, result, resetGame }: Props) => {
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   height: 500px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  margin-bottom: 100px;
+  margin-bottom: 400px;
 `;
 
 const Button = styled.button`
