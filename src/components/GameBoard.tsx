@@ -53,6 +53,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: 500px;
+  margin-bottom: 20px;
 `;
 
 const Wrapper = styled.div`

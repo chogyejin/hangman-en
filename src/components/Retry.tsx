@@ -19,6 +19,9 @@ const Retry = ({ result, resetGame, word }: Props) => {
       {isLose && (
         <>
           <div>You lose!</div>
+          <AnswerText>
+            Answer is <span>{word}</span>
+          </AnswerText>
           <Button onClick={handleClick}>Retry?</Button>
         </>
       )}

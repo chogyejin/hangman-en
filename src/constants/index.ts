@@ -38,4 +38,4 @@ export const DRAW_LIST = [
   "leftLeg",
 ];
 
-export const MAX_COUNT = DRAW_LIST.length - 1;
+export const MAX_COUNT = DRAW_LIST.length;
