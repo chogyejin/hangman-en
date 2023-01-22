@@ -73,5 +73,5 @@ hangman-es
   - `useWord` : fetch word and return `word`, `isLoading` and `refetch`
   - `useGuessing`: manage current `guessing word`, `result` and `reset` function.
 - canvas
-  - In `HangmanCanvas` component, according to wrong count, draw hangman
+  - In `HangmanCanvas` component, according to wrong count, draw hangman(refer to [here](https://codepen.io/xavier_bs/pen/MMNGyG))
   - When you reach the certain wrong count(8), game is over
