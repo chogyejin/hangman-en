@@ -6,7 +6,7 @@ export type Result = {
   isWin: boolean;
 };
 
-const useGuessing = (word: string) => {
+export const useGuessing = (word: string) => {
   const [guessing, setGuessing] = useState({
     selectedLetters: "",
     correctLetters: "",
@@ -72,5 +72,3 @@ const useGuessing = (word: string) => {
     reset,
   };
 };
-
-export default useGuessing;

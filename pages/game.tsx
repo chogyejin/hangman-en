@@ -1,9 +1,9 @@
+import { useState } from "react";
 import GameBoard from "../src/components/GameBoard";
 import KeyboardList from "../src/components/KeyboardList";
 import Loading from "../src/components/Loading";
-import useWord from "../src/hooks/useWord";
-import useGuessing from "../src/hooks/useGuessing";
-import { useState } from "react";
+import { useGuessing } from "../src/hooks/useGuessing";
+import { useWord } from "../src/hooks/useWord";
 
 const GamePage = () => {
   const { word, isLoading, refetch } = useWord();
