@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetchRandomword } from "../api/randomword";
+import { GameType, getRandomword } from "../api/getRandomword";
 import { isProperNoun } from "../utils/check";
 
 const instance = axios.create({
@@ -12,7 +12,9 @@ instance.interceptors.response.use(
     const { word } = response.data;
 
     if (isProperNoun(word)) {
-      const newResponse = await fetchRandomword();
+      const type = response.config.url?.split("type=")[1] as GameType;
+
+      const newResponse = await getRandomword(type);
 
       return newResponse;
     }

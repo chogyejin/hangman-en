@@ -1,10 +1,26 @@
 import styled from "@emotion/styled";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import Dropdown from "../src/components/Dropdown";
+import { GameType } from "../src/lib/api/getRandomword";
 
 const HomePage = () => {
+  const router = useRouter();
+
+  const handleOptionClick = (type: GameType) => {
+    router.push(`/game?type=${type}`);
+  };
+
   return (
     <Container>
-      <Link href="/game">Start</Link>
+      <Dropdown
+        options={[
+          { label: "Noun", value: "noun" },
+          { label: "Verb", value: "verb" },
+          { label: "Adjective", value: "adjective" },
+          { label: "Adverb", value: "adverb" },
+        ]}
+        onClick={handleOptionClick}
+      />
     </Container>
   );
 };
@@ -14,7 +30,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-size: 40px;
+  font-size: 32px;
 `;
 
 export default HomePage;
