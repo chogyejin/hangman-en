@@ -5,17 +5,12 @@ import { Result } from "../hooks/useGuessing";
 interface Props {
   char: string;
   onSelect: (letter: string) => void;
-  isNewGame: boolean;
   result: Result;
 }
 
-const Keyboard = ({ char, onSelect, isNewGame, result }: Props) => {
+const Keyboard = ({ char, onSelect, result }: Props) => {
   const { isLose, isWin } = result;
   const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, [isNewGame]);
 
   const handleClick = () => {
     if (isLose || isWin) {
