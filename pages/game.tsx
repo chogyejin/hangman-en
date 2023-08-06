@@ -5,7 +5,7 @@ import { useGuessing } from "../src/hooks/useGuessing";
 import { useWord } from "../src/hooks/useWord";
 
 const GamePage = () => {
-  const { word, isLoading, refetch } = useWord();
+  const { word, isLoading, isError, refetch } = useWord();
   const { guessing, result, handleGuessing, reset } = useGuessing(word);
 
   const handleSelect = (letter: string) => {
@@ -16,6 +16,10 @@ const GamePage = () => {
     reset();
     refetch();
   };
+
+  if (isError) {
+    return <div>Something went wrong!</div>;
+  }
 
   return (
     <div>

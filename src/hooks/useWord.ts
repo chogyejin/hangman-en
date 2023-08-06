@@ -9,6 +9,8 @@ interface Data {
 export const useWord = () => {
   const [word, setWord] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   const router = useRouter();
   const { type } = router.query;
 
@@ -18,6 +20,7 @@ export const useWord = () => {
       return;
     }
 
+    setIsError(false);
     setIsLoading(true);
     try {
       const res = await axios.get<Data>(`/api/randomword?type=${type}`);
@@ -25,7 +28,7 @@ export const useWord = () => {
         setWord(res.data.word);
       }
     } catch (error) {
-      console.error(error);
+      setIsError(true);
     } finally {
       setIsLoading(false);
     }
@@ -35,5 +38,5 @@ export const useWord = () => {
     fetchWord();
   }, [fetchWord]);
 
-  return { word, isLoading, refetch: fetchWord };
+  return { word, isLoading, isError, refetch: fetchWord };
 };
