@@ -1,3 +1,7 @@
+const OFF = 0;
+const WARNING = 1;
+const ERROR = 2;
+
 module.exports = {
   extends: [
     "eslint:recommended",
@@ -6,9 +10,9 @@ module.exports = {
   ],
   parser: "@typescript-eslint/parser",
   rules: {
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-inferrable-types": "warn",
+    "@typescript-eslint/no-unused-vars": WARNING,
+    "@typescript-eslint/no-inferrable-types": WARNING,
 
-    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/exhaustive-deps": ERROR,
   },
 };
