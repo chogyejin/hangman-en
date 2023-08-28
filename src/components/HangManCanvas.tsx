@@ -19,8 +19,6 @@ const HangManCanvas = ({ count }: Props) => {
     drawHangman(context, DRAW_LIST[count]);
   }, [count]);
 
-  var step = 0;
-
   return (
     <Container>
       <canvas ref={canvasRef} width={300} height={300} />
