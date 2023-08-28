@@ -8,15 +8,13 @@ interface Props {
 }
 
 const Retry = ({ result, resetGame, word }: Props) => {
-  const { isLose, isWin } = result;
-
   const handleClick = () => {
     resetGame();
   };
 
   return (
     <Container>
-      {isLose && (
+      {result === "lose" && (
         <>
           <div>You lose!</div>
           <AnswerText>
@@ -25,7 +23,7 @@ const Retry = ({ result, resetGame, word }: Props) => {
           <Button onClick={handleClick}>Retry?</Button>
         </>
       )}
-      {isWin && (
+      {result === "win" && (
         <>
           <div>You win!</div>
           <AnswerText>

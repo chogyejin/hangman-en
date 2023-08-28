@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { Result } from "../hooks/useGuessing";
 import HangManCanvas from "./HangManCanvas";
 import Letter from "./Letter";
 import Retry from "./Retry";
+import { Result } from "../hooks/useGuessing";
 
 interface Props {
   word: string;
@@ -19,16 +19,10 @@ const GameBoard = ({
   resetGame,
   count,
 }: Props) => {
-  const { isLose, isWin } = result;
-
-  const handleClick = () => {
-    resetGame();
-  };
-
   return (
     <Container>
       <HangManCanvas count={count} />
-      {!isLose && !isWin ? (
+      {result === "In Progress" ? (
         <Wrapper>
           {word.split("").map((letter, index) => (
             <Letter
@@ -41,7 +35,7 @@ const GameBoard = ({
       ) : (
         <Retry result={result} resetGame={resetGame} word={word} />
       )}
-      <Button onClick={handleClick}>
+      <Button onClick={resetGame}>
         <span>&#8635;</span>
       </Button>
     </Container>

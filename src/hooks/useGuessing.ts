@@ -1,74 +1,70 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MAX_COUNT } from "../constants";
 
-export type Result = {
-  isLose: boolean;
-  isWin: boolean;
-};
+export type Result = "In Progress" | "win" | "lose";
+
+export interface Guessing {
+  selectedLetters: string;
+  correctLetters: string;
+  count: number;
+  result: Result;
+}
 
 export const useGuessing = (word: string) => {
-  const [guessing, setGuessing] = useState({
+  const [guessing, setGuessing] = useState<Guessing>({
     selectedLetters: "",
     correctLetters: "",
     count: 0,
-  });
-  const [result, setResult] = useState<Result>({
-    isLose: false,
-    isWin: false,
+    result: "In Progress",
   });
 
-  const handleGuessing = (letter: string) => {
-    setGuessing((prev) => ({
-      ...prev,
-      selectedLetters: prev.selectedLetters + letter,
-      count: word.includes(letter) ? prev.count : prev.count + 1,
-    }));
+  // character click event handler
+  const handleSelect = (letter: string) => {
+    const nextSelectedLetters = guessing.selectedLetters + letter;
+
+    const nextCorrectLetters = word
+      .split("")
+      .map((char) => (nextSelectedLetters.includes(char) ? char : "_"))
+      .join("");
+    if (nextCorrectLetters === word) {
+      setGuessing({
+        ...guessing,
+        result: "win",
+      });
+      return;
+    }
+
+    const nextCount = word.includes(letter)
+      ? guessing.count
+      : guessing.count + 1;
+    if (nextCount === MAX_COUNT) {
+      setGuessing({
+        ...guessing,
+        result: "lose",
+      });
+      return;
+    }
+
+    setGuessing({
+      ...guessing,
+      selectedLetters: nextSelectedLetters,
+      correctLetters: nextCorrectLetters,
+      count: nextCount,
+    });
   };
 
-  const reset = () => {
+  const resetState = () => {
     setGuessing({
       selectedLetters: "",
       correctLetters: "",
       count: 0,
-    });
-    setResult({
-      isLose: false,
-      isWin: false,
+      result: "In Progress",
     });
   };
 
-  useEffect(() => {
-    setGuessing((prev) => ({
-      ...prev,
-      correctLetters: word
-        .split("")
-        .map((char) => (guessing.selectedLetters.includes(char) ? char : "_"))
-        .join(""),
-    }));
-  }, [guessing.selectedLetters, word]);
-
-  useEffect(() => {
-    if (guessing.count === MAX_COUNT) {
-      setResult((prev) => ({
-        ...prev,
-        isLose: true,
-      }));
-    }
-  }, [guessing.count]);
-
-  useEffect(() => {
-    if (word && guessing.correctLetters === word) {
-      setResult((prev) => ({
-        ...prev,
-        isWin: true,
-      }));
-    }
-  }, [guessing.correctLetters, word]);
-
   return {
     guessing,
-    result,
-    handleGuessing,
-    reset,
+    handleSelect,
+    resetState,
   };
 };

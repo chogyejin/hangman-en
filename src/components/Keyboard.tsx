@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Result } from "../hooks/useGuessing";
 
 interface Props {
@@ -9,11 +9,10 @@ interface Props {
 }
 
 const Keyboard = ({ char, onSelect, result }: Props) => {
-  const { isLose, isWin } = result;
   const [isVisible, setIsVisible] = useState(true);
 
   const handleClick = () => {
-    if (isLose || isWin) {
+    if (result !== "In Progress") {
       return;
     }
 
