@@ -6,14 +6,10 @@ import { useWord } from "../src/hooks/useWord";
 
 const GamePage = () => {
   const { word, isLoading, isError, refetch } = useWord();
-  const { guessing, result, handleGuessing, reset } = useGuessing(word);
-
-  const handleSelect = (letter: string) => {
-    handleGuessing(letter);
-  };
+  const { guessing, handleSelect, resetState } = useGuessing(word);
 
   const resetGame = () => {
-    reset();
+    resetState();
     refetch();
   };
 
@@ -30,11 +26,15 @@ const GamePage = () => {
           word={word}
           correctLetters={guessing.correctLetters}
           count={guessing.count}
-          result={result}
+          result={guessing.result}
           resetGame={resetGame}
         />
       )}
-      <KeyboardList key={word} onSelect={handleSelect} result={result} />
+      <KeyboardList
+        key={word}
+        onSelect={handleSelect}
+        result={guessing.result}
+      />
     </div>
   );
 };
