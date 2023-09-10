@@ -17,9 +17,10 @@
     "baseUrl": "src/",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/constants/*": ["constants/*"],
+      "@/constants": ["constants/index"],
       "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"]
+      "@/lib/*": ["lib/*"],
+      "@/styles": ["styles/globalStyles"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
