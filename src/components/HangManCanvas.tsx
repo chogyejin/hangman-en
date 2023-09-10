@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useEffect, useRef } from "react";
-import { DRAW_LIST } from "../constants";
-import { drawHangman } from "../lib/utils/draw";
+import styled from "@emotion/styled";
+import { DRAW_LIST } from "@/constants";
+import { drawHangman } from "@/lib/utils/draw";
 
 interface Props {
   count: number;

@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import HangManCanvas from "./HangManCanvas";
-import Letter from "./Letter";
-import Retry from "./Retry";
-import { Result } from "../hooks/useGuessing";
+import HangManCanvas from "@/components/HangManCanvas";
+import Letter from "@/components/Letter";
+import Retry from "@/components/Retry";
+import { Result } from "@/hooks/useGuessing";
 
 interface Props {
   word: string;

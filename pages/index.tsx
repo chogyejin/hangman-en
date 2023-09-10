@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import Dropdown from "../src/components/Dropdown";
-import { GameType } from "../src/lib/api/getRandomword";
+import Dropdown from "@/components/Dropdown";
+import { GameType } from "@/lib/api/getRandomword";
 
 const HomePage = () => {
   const router = useRouter();

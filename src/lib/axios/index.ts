@@ -1,6 +1,6 @@
 import axios from "axios";
-import { GameType, getRandomword } from "../api/getRandomword";
-import { isProperNoun } from "../utils/check";
+import { GameType, getRandomword } from "@/lib/api/getRandomword";
+import { isProperNoun } from "@/lib/utils/check";
 
 const instance = axios.create({
   baseURL: process.env.API_URL,

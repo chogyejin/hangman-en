@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Result } from "../hooks/useGuessing";
+import { Result } from "@/hooks/useGuessing";
 
 interface Props {
   result: Result;

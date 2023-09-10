@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { ALPAHBET } from "../constants";
-import { Result } from "../hooks/useGuessing";
-import Keyboard from "./Keyboard";
+import { Result } from "@/hooks/useGuessing";
+import { ALPAHBET } from "@/constants";
+import Keyboard from "@/components/Keyboard";
 
 interface Props {
   onSelect: (letter: string) => void;

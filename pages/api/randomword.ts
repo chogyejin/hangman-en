@@ -1,9 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type {
-  GameType,
-  Data as ResponseData,
-} from "../../src/lib/api/getRandomword";
-import { getRandomword } from "../../src/lib/api/getRandomword";
+import type { GameType, Data as ResponseData } from "@/lib/api/getRandomword";
+import { getRandomword } from "@/lib/api/getRandomword";
 
 const handler = async (
   req: NextApiRequest,

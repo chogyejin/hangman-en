@@ -1,4 +1,4 @@
-import instance from "../axios";
+import instance from "@/lib/axios";
 
 export type GameType = "noun" | "verb" | "adjective" | "adverb";
 

@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useRef, useState } from "react";
-import { useClickOutside } from "../hooks/useClickOutside";
-import { GameType } from "../lib/api/getRandomword";
+import styled from "@emotion/styled";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { GameType } from "@/lib/api/getRandomword";
 
 export interface Option {
   label: string;

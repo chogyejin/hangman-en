@@ -1,8 +1,8 @@
-import GameBoard from "../src/components/GameBoard";
-import KeyboardList from "../src/components/KeyboardList";
-import Loading from "../src/components/Loading";
-import { useGuessing } from "../src/hooks/useGuessing";
-import { useWord } from "../src/hooks/useWord";
+import GameBoard from "@/components/GameBoard";
+import KeyboardList from "@/components/KeyboardList";
+import Loading from "@/components/Loading";
+import { useGuessing } from "@/hooks/useGuessing";
+import { useWord } from "@/hooks/useWord";
 
 const GamePage = () => {
   const { word, isLoading, isError, refetch } = useWord();

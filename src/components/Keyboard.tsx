@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
 import { useState } from "react";
-import { Result } from "../hooks/useGuessing";
+import styled from "@emotion/styled";
+import { Result } from "@/hooks/useGuessing";
 
 interface Props {
   char: string;
