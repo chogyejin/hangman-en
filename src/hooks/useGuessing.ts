@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Count, MAX_COUNT } from "@/constants";
 
-export type Result = "In Progress" | "win" | "lose";
+export type Result = "in-progress" | "win" | "lose";
 
 export interface Guessing {
   selectedLetters: string;
@@ -15,7 +15,7 @@ export const useGuessing = (word: string) => {
     selectedLetters: "",
     correctLetters: "",
     count: 0,
-    result: "In Progress",
+    result: "in-progress",
   });
 
   // character click event handler
@@ -64,7 +64,7 @@ export const useGuessing = (word: string) => {
       selectedLetters: "",
       correctLetters: "",
       count: 0,
-      result: "In Progress",
+      result: "in-progress",
     });
   };
 

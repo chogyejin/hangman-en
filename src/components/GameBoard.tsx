@@ -23,7 +23,7 @@ const GameBoard = ({
   return (
     <Container>
       <HangManCanvas count={count} />
-      {result === "In Progress" ? (
+      {result === "in-progress" ? (
         <Wrapper>
           {word.split("").map((letter, index) => (
             <Letter

@@ -12,7 +12,7 @@ const Keyboard = ({ char, onSelect, result }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleClick = () => {
-    if (result !== "In Progress") {
+    if (result !== "in-progress") {
       return;
     }
 
