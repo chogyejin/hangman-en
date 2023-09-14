@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
-import { DRAW_LIST } from "@/constants";
+import { Count, DRAW_LIST } from "@/constants";
 import { drawHangman } from "@/lib/utils/draw";
 
 interface Props {
-  count: number;
+  count: Count;
 }
 
 const HangManCanvas = ({ count }: Props) => {
@@ -12,7 +12,7 @@ const HangManCanvas = ({ count }: Props) => {
 
   useEffect(() => {
     const context = canvasRef.current?.getContext("2d");
-    if (!context) {
+    if (!context || count === 0) {
       return;
     }
 

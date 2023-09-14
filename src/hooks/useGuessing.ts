@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { MAX_COUNT } from "@/constants";
+import { Count, MAX_COUNT } from "@/constants";
 
 export type Result = "In Progress" | "win" | "lose";
 
 export interface Guessing {
   selectedLetters: string;
   correctLetters: string;
-  count: number;
+  count: Count;
   result: Result;
 }
 
@@ -26,6 +26,7 @@ export const useGuessing = (word: string) => {
       .split("")
       .map((char) => (nextSelectedLetters.includes(char) ? char : "_"))
       .join("");
+
     if (nextCorrectLetters === word) {
       setGuessing({
         ...guessing,
@@ -34,9 +35,14 @@ export const useGuessing = (word: string) => {
       return;
     }
 
+    // nextCount is 0 ~ MAX_COUNT
+    // It is "number" type, not "Count" type
     const nextCount = word.includes(letter)
       ? guessing.count
       : guessing.count + 1;
+
+    // exclude max count
+    // after this if statement, we know nextCount is "Count" type
     if (nextCount === MAX_COUNT) {
       setGuessing({
         ...guessing,
@@ -49,7 +55,7 @@ export const useGuessing = (word: string) => {
       ...guessing,
       selectedLetters: nextSelectedLetters,
       correctLetters: nextCorrectLetters,
-      count: nextCount,
+      count: nextCount as Count,
     });
   };
 

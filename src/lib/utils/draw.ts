@@ -1,6 +1,8 @@
+import { DrawListItem } from "@/constants";
+
 export const drawHangman = (
   context: CanvasRenderingContext2D,
-  part: string
+  part: DrawListItem
 ) => {
   switch (part) {
     case "gallows":

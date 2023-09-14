@@ -3,13 +3,14 @@ import HangManCanvas from "@/components/HangManCanvas";
 import Letter from "@/components/Letter";
 import Retry from "@/components/Retry";
 import { Result } from "@/hooks/useGuessing";
+import { Count } from "@/constants";
 
 interface Props {
   word: string;
   correctLetters: string;
   result: Result;
   resetGame: () => void;
-  count: number;
+  count: Count;
 }
 
 const GameBoard = ({
