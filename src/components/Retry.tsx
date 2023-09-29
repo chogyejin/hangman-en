@@ -48,6 +48,8 @@ const AnswerText = styled.div`
   & span {
     font-weight: 700;
   }
+
+  margin-bottom: 20px;
 `;
 
 const Button = styled.button`
@@ -60,7 +62,6 @@ const Button = styled.button`
   background-color: #000;
   transition: all 0.3s ease;
   z-index: 1;
-  margin-top: 20px;
 
   &:hover {
     color: #000;
@@ -81,10 +82,6 @@ const Button = styled.button`
   &:hover:after {
     left: 0;
     width: 100%;
-  }
-
-  &:active {
-    top: 3px;
   }
 `;
 
