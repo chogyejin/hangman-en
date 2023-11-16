@@ -7,9 +7,9 @@ const handler = async (
   res: NextApiResponse<ResponseData>
 ) => {
   const { query } = req;
-  const type = query.type as GameType;
+  const { type } = query;
 
-  const response = await getRandomword(type);
+  const response = await getRandomword(type as GameType);
 
   res.status(200).json({ word: response.data.word });
 };
