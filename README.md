@@ -10,7 +10,7 @@
 
 0. Check your Node.js version (>= 16.14)
 1. `git clone https://github.com/chogyejin/hangman-en.git`
-2. `cd hangman-en`
+2. `cd hangman-en` and `npm i`
 3. Set `.env` file in root directory with `API_URL` and `API_KEY`(See here [API Ninjas](https://api-ninjas.com/).)
 4. `npm run dev` or `npm run build && npm run start -- -p [your port number]`
 
