@@ -1,4 +1,4 @@
-# Hangman (ES)
+# Hangman (English)
 
 - You can enjoy Hangman with random English word.
 
@@ -8,18 +8,20 @@
 
 ## How To Set In Local
 
-1. `git clone https://github.com/chogyejin/hangman-es.git`
-2. `cd hangman-es`
-3. `npm run dev` or `npm run build && npm run start -- -p [your port number]`
+0. Check your Node.js version (>= 16.14)
+1. `git clone https://github.com/chogyejin/hangman-en.git`
+2. `cd hangman-en`
+3. Set `.env` file in root directory with `API_URL` and `API_KEY`(See here [API Ninjas](https://api-ninjas.com/).)
+4. `npm run dev` or `npm run build && npm run start -- -p [your port number]`
 
 ## Packages
 
 - react: 18.2.0
-- next: 13.0.5
+- next: 13.0.5 ([Pages Router](https://nextjs.org/docs/pages))
 - typescript: 4.9.3
-- @emotion/react: 11.10.5
-- @emotion/styled: 11.10.5
-- axios: 1.2.0
+- @emotion/react: 11.11.1
+- @emotion/styled: 11.11.0
+- axios: 1.6.2
 
 ## Directory
 
@@ -29,8 +31,9 @@ hangman-es
 │  ├─ _app.tsx
 │  ├─ api
 │  │  └─ randomword.ts          # API Routes
+│  ├─ 404.tsx                   # Not found page
 │  ├─ game.tsx                  # game page
-│  └─ index.tsx                 # entry page
+│  └─ index.tsx                 # main page
 ├─ src
 │  ├─ components
 │  │  ├─ Dropdown.tsx
@@ -49,12 +52,13 @@ hangman-es
 │  │  └─ useWord.ts
 │  └─ lib
 │     ├─ api
-│     │  └─ randomword.ts        # mask URL & hide API key
+│     │  └─ getRandomword.ts     # mask URL & hide API key
 │     ├─ axios
 │     │  └─ index.ts
 │     └─ utils
 │        ├─ check.ts
-│        └─ draw.ts
+│        ├─ draw.ts
+│        └─ range.ts
 └─ styles
    └─ globalStyles.ts
 ```
@@ -69,8 +73,8 @@ hangman-es
   - styled components by [emotion](https://emotion.sh/docs/introduction)
 - Get random word
 
-  - Free random API provied by [API Ninjas](https://api-ninjas.com/api/randomword)
-  - By default API key is exposed in request headers(`x-api-key`), hide my own API key using Next.js's [API Routes](https://nextjs.org/docs/api-routes/introduction)(comes out as `undefined`)
+  - Free random API provided by [API Ninjas](https://api-ninjas.com/api/randomword)
+  - By default API key is exposed in request headers(`x-api-key`), we can hide my own API key using Next.js's [API Routes](https://nextjs.org/docs/api-routes/introduction)
 
   - Proper nouns are so hard to guess, so check the response and re-request by axios instance`s intercepter.
 
@@ -81,3 +85,6 @@ hangman-es
 - Canvas
   - In `HangmanCanvas` component, getting closer to the wrong count, draw hangman(refer to [here](https://codepen.io/xavier_bs/pen/MMNGyG))
   - When you reach the certain wrong count(8), game is over
+- Not found page
+  - custom `404.tsx`
+  - If the query string is incorrect when the user accesses the game page by manipulating the url, the user moves to the 404 page(`NotFound` component) through `getServersideprops`.
