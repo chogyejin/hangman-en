@@ -1,16 +1,15 @@
 import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { GameType } from "@/lib/api/getRandomword";
 
-export interface Option {
+interface Option {
   label: string;
-  value: GameType;
+  value: string;
 }
 
 interface Props {
   options: Option[];
-  onClick: (type: GameType) => void;
+  onClick: (option: string) => void;
 }
 
 const Dropdown = ({ options, onClick }: Props) => {
@@ -25,8 +24,8 @@ const Dropdown = ({ options, onClick }: Props) => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (type: GameType) => {
-    onClick(type);
+  const handleOptionClick = (option: string) => {
+    onClick(option);
     setIsOpen(false);
   };
 

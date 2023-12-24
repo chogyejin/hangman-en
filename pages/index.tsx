@@ -1,26 +1,24 @@
-import styled from "@emotion/styled";
 import { useRouter } from "next/router";
+import styled from "@emotion/styled";
 import Dropdown from "@/components/Dropdown";
-import { GameType } from "@/lib/api/getRandomword";
+
+const options = [
+  { label: "Noun", value: "noun" },
+  { label: "Verb", value: "verb" },
+  { label: "Adjective", value: "adjective" },
+  { label: "Adverb", value: "adverb" },
+];
 
 const HomePage = () => {
   const router = useRouter();
 
-  const handleOptionClick = (type: GameType) => {
+  const handleOptionClick = (type: string) => {
     router.push(`/game?type=${type}`);
   };
 
   return (
     <Container>
-      <Dropdown
-        options={[
-          { label: "Noun", value: "noun" },
-          { label: "Verb", value: "verb" },
-          { label: "Adjective", value: "adjective" },
-          { label: "Adverb", value: "adverb" },
-        ]}
-        onClick={handleOptionClick}
-      />
+      <Dropdown options={options} onClick={handleOptionClick} />
     </Container>
   );
 };
