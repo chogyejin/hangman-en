@@ -17,6 +17,9 @@ export const DRAW_LIST = [
   "leftLeg",
 ] as const;
 
+// try count
+export const MAX_COUNT = DRAW_LIST.length;
+
 type ExcludeFirstElement<T extends readonly unknown[]> = T extends readonly [
   unknown,
   ...infer U
@@ -25,9 +28,6 @@ type ExcludeFirstElement<T extends readonly unknown[]> = T extends readonly [
   : never;
 
 export type DrawListItem = ExcludeFirstElement<typeof DRAW_LIST>;
-
-// try count
-export const MAX_COUNT = DRAW_LIST.length;
 
 type Enumerate<
   N extends number,
