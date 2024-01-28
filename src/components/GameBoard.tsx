@@ -4,6 +4,7 @@ import Letter from "@/components/Letter";
 import Retry from "@/components/Retry";
 import { Result } from "@/hooks/useGuessing";
 import { Count } from "@/constants";
+import Loading from "@/components/Loading";
 
 interface Props {
   word: string;
@@ -11,6 +12,8 @@ interface Props {
   result: Result;
   resetGame: () => void;
   count: Count;
+  isLoading: boolean;
+  isError: boolean;
 }
 
 const GameBoard = ({
@@ -19,7 +22,17 @@ const GameBoard = ({
   result,
   resetGame,
   count,
+  isLoading,
+  isError,
 }: Props) => {
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <div>Something went wrong!</div>;
+  }
+
   return (
     <Container>
       <HangManCanvas count={count} />
