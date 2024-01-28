@@ -33,29 +33,31 @@ const Dropdown = ({ options, onClick }: Props) => {
 
   return (
     <div ref={ref}>
-      <SelectBox onClick={handleSelectClick}>Select type...</SelectBox>
+      <SelectButton role="button" onClick={handleSelectClick}>
+        Select type...
+      </SelectButton>
       {isOpen && (
-        <OptionsContainer>
+        <ListContainer>
           {options.map(({ label, value }, index) => (
-            <OptionBox key={index} onClick={() => handleOptionClick(value)}>
+            <ListItem key={index} onClick={() => handleOptionClick(value)}>
               {label}
-            </OptionBox>
+            </ListItem>
           ))}
-        </OptionsContainer>
+        </ListContainer>
       )}
     </div>
   );
 };
 
-const SelectBox = styled.div`
+const SelectButton = styled.button`
   width: 320px;
   padding: 10px;
   border: 1px solid black;
   border-radius: 10px;
-  cursor: pointer;
+  text-align: left;
 `;
 
-const OptionsContainer = styled.div`
+const ListContainer = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +66,7 @@ const OptionsContainer = styled.div`
   margin-top: 10px;
 `;
 
-const OptionBox = styled.div`
+const ListItem = styled.li`
   text-align: center;
   width: inherit;
   border: 1px solid lightgray;
