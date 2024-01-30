@@ -5,6 +5,7 @@ import Retry from "@/components/Retry";
 import { Result } from "@/hooks/useGuessing";
 import { Count } from "@/constants";
 import Loading from "@/components/Loading";
+import { useRouter } from "next/router";
 
 interface Props {
   word: string;
@@ -25,6 +26,12 @@ const GameBoard = ({
   isLoading,
   isError,
 }: Props) => {
+  const router = useRouter();
+
+  const handleBackClick = () => {
+    router.back();
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -35,6 +42,9 @@ const GameBoard = ({
 
   return (
     <Container>
+      <BackButton onClick={handleBackClick}>
+        <span>&#8592;</span>
+      </BackButton>
       <HangManCanvas count={count} />
       {result === "in-progress" ? (
         <Wrapper>
@@ -49,9 +59,9 @@ const GameBoard = ({
       ) : (
         <Retry result={result} resetGame={resetGame} word={word} />
       )}
-      <Button onClick={resetGame}>
+      <ResetButton onClick={resetGame}>
         <span>&#8635;</span>
-      </Button>
+      </ResetButton>
     </Container>
   );
 };
@@ -70,14 +80,30 @@ const Wrapper = styled.div`
   margin-bottom: 400px;
 `;
 
-const Button = styled.button`
+const BackButton = styled.button`
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 50%;
+
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+`;
+
+const ResetButton = styled.button`
   position: fixed;
   top: 20px;
   right: 20px;
   font-size: 40px;
   width: 60px;
   height: 60px;
-  color: #000;
   background-color: #fff;
   border: 1px solid #000;
   border-radius: 50%;
