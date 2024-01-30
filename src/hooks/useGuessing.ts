@@ -10,13 +10,15 @@ export interface Guessing {
   result: Result;
 }
 
+const initialState: Guessing = {
+  selectedLetters: "",
+  correctLetters: "",
+  count: 0,
+  result: "in-progress",
+};
+
 export const useGuessing = (word: string) => {
-  const [guessing, setGuessing] = useState<Guessing>({
-    selectedLetters: "",
-    correctLetters: "",
-    count: 0,
-    result: "in-progress",
-  });
+  const [guessing, setGuessing] = useState<Guessing>(initialState);
 
   // character click event handler
   const handleSelect = (letter: string) => {
@@ -60,12 +62,7 @@ export const useGuessing = (word: string) => {
   };
 
   const resetState = () => {
-    setGuessing({
-      selectedLetters: "",
-      correctLetters: "",
-      count: 0,
-      result: "in-progress",
-    });
+    setGuessing(initialState);
   };
 
   return {
