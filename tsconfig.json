@@ -20,7 +20,8 @@
       "@/constants": ["constants/index"],
       "@/hooks/*": ["hooks/*"],
       "@/lib/*": ["lib/*"],
-      "@/styles": ["styles/globalStyles"]
+      "@/styles": ["styles/globalStyles"],
+      "@/types": ["types"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

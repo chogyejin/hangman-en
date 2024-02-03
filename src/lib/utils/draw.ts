@@ -1,4 +1,4 @@
-import { DrawListItem } from "@/constants";
+import { DrawListItem } from "@/types";
 
 export const drawHangman = (
   context: CanvasRenderingContext2D,

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Count, MAX_COUNT } from "@/constants";
+import { MAX_COUNT } from "@/constants";
+import { Count } from "@/types";
 
 export type Result = "in-progress" | "win" | "lose";
 

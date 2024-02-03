@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import HangManCanvas from "@/components/HangManCanvas";
 import Letter from "@/components/Letter";
 import Retry from "@/components/Retry";
 import { Result } from "@/hooks/useGuessing";
-import { Count } from "@/constants";
 import Loading from "@/components/Loading";
-import { useRouter } from "next/router";
+import { Count } from "@/types";
 
 interface Props {
   word: string;

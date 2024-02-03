@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
-import { Count, DRAW_LIST } from "@/constants";
+import { DRAW_LIST } from "@/constants";
 import { drawHangman } from "@/lib/utils/draw";
+import { Count } from "@/types";
 
 interface Props {
   count: Count;
