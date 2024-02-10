@@ -1,47 +1,32 @@
-import React, { useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { useClickOutside } from "@/hooks/useClickOutside";
 
-interface Option {
-  label: string;
-  value: string;
+interface Props<T> {
+  title: string;
+  options: readonly T[];
+  renderOption: (option: T) => ReactNode;
 }
 
-interface Props {
-  options: Option[];
-  onClick: (option: string) => void;
-}
-
-const Dropdown = ({ options, onClick }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Dropdown = <T,>({ title, options, renderOption }: Props<T>) => {
   const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, () => setIsOpen(false));
 
-  const handleOutClick = () => {
-    setIsOpen(false);
-  };
-
-  const handleSelectClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleOptionClick = (option: string) => {
-    onClick(option);
-    setIsOpen(false);
-  };
-
-  useClickOutside(ref, handleOutClick);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div ref={ref}>
-      <SelectButton role="button" onClick={handleSelectClick}>
-        Select type...
+      <SelectButton
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        {title}
       </SelectButton>
       {isOpen && (
         <ListContainer>
-          {options.map(({ label, value }, index) => (
-            <ListItem key={index} onClick={() => handleOptionClick(value)}>
-              {label}
-            </ListItem>
+          {options.map((option, index) => (
+            <ListItem key={index}>{renderOption(option)}</ListItem>
           ))}
         </ListContainer>
       )}

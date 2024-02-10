@@ -19,3 +19,5 @@ export const DRAW_LIST = [
 
 // try count
 export const MAX_COUNT = DRAW_LIST.length;
+
+export const GAME_TYPE_LIST = ["noun", "verb", "adjective", "adverb"] as const;

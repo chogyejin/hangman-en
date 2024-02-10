@@ -1,27 +1,26 @@
-import { useRouter } from "next/router";
 import styled from "@emotion/styled";
+import NextLink from "next/link";
 import Dropdown from "@/components/Dropdown";
-
-const options = [
-  { label: "Noun", value: "noun" },
-  { label: "Verb", value: "verb" },
-  { label: "Adjective", value: "adjective" },
-  { label: "Adverb", value: "adverb" },
-];
+import { capitalizeFirstLetter } from "@/lib/utils/capitalize";
+import { GAME_TYPE_LIST } from "@/constants";
 
 const HomePage = () => {
-  const router = useRouter();
-
-  const handleOptionClick = (type: string) => {
-    router.push(`/game?type=${type}`);
-  };
-
   return (
     <Container>
-      <Dropdown options={options} onClick={handleOptionClick} />
+      <Dropdown
+        title="Select type..."
+        options={GAME_TYPE_LIST}
+        renderOption={(type) => (
+          <Link href={`/game?type=${type}`}>{capitalizeFirstLetter(type)}</Link>
+        )}
+      />
     </Container>
   );
 };
+
+const Link = styled(NextLink)`
+  display: block;
+`;
 
 const Container = styled.div`
   display: flex;
