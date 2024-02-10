@@ -23,11 +23,10 @@ describe("Home Page", () => {
     const dropdown = screen.getByRole("button", { name: "Select type..." });
     await user.click(dropdown);
 
-    // "getBy..." throws a descriptive error if no elements match
-    expect(screen.getByText("Noun")).toBeDefined();
-    expect(screen.getByText("Verb")).toBeDefined();
-    expect(screen.getByText("Adjective")).toBeDefined();
-    expect(screen.getByText("Adverb")).toBeDefined();
+    expect(screen.getByRole("link", { name: "Noun" })).toBeDefined();
+    expect(screen.getByRole("link", { name: "Verb" })).toBeDefined();
+    expect(screen.getByRole("link", { name: "Adjective" })).toBeDefined();
+    expect(screen.getByRole("link", { name: "Adverb" })).toBeDefined();
   });
 
   it("should close the dropdown when clicking outside", async () => {
@@ -39,11 +38,10 @@ describe("Home Page", () => {
 
     await user.click(document.body);
 
-    // "queryBy..." returns null if no elements match
-    expect(screen.queryByText("Noun")).toBeNull();
-    expect(screen.queryByText("Verb")).toBeNull();
-    expect(screen.queryByText("Adjective")).toBeNull();
-    expect(screen.queryByText("Adverb")).toBeNull();
+    expect(screen.queryByRole("link", { name: "Noun" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Verb" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Adjective" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "Adverb" })).toBeNull();
   });
 
   it("should route to game page when 'Noun' is clicked", async () => {
@@ -57,5 +55,44 @@ describe("Home Page", () => {
     await user.click(nounBox);
 
     expect(mockRouter.asPath).toEqual("/game?type=noun");
+  });
+
+  it("should route to game page when 'Verb' is clicked", async () => {
+    const user = userEvent.setup();
+    render(<HomePage />, { wrapper: MemoryRouterProvider });
+
+    const dropdown = screen.getByRole("button", { name: "Select type..." });
+    await user.click(dropdown);
+
+    const verbBox = screen.getByText("Verb");
+    await user.click(verbBox);
+
+    expect(mockRouter.asPath).toEqual("/game?type=verb");
+  });
+
+  it("should route to game page when 'Adjective' is clicked", async () => {
+    const user = userEvent.setup();
+    render(<HomePage />, { wrapper: MemoryRouterProvider });
+
+    const dropdown = screen.getByRole("button", { name: "Select type..." });
+    await user.click(dropdown);
+
+    const adjectiveBox = screen.getByText("Adjective");
+    await user.click(adjectiveBox);
+
+    expect(mockRouter.asPath).toEqual("/game?type=adjective");
+  });
+
+  it("should route to game page when 'Adverb' is clicked", async () => {
+    const user = userEvent.setup();
+    render(<HomePage />, { wrapper: MemoryRouterProvider });
+
+    const dropdown = screen.getByRole("button", { name: "Select type..." });
+    await user.click(dropdown);
+
+    const adverbBox = screen.getByText("Adverb");
+    await user.click(adverbBox);
+
+    expect(mockRouter.asPath).toEqual("/game?type=adverb");
   });
 });
