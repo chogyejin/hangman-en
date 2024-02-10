@@ -8,7 +8,7 @@
 
 ## How To Set In Local
 
-0. Check your Node.js version (>= 16.14)
+0. Check your Node.js version (>= 18)
 1. `git clone https://github.com/chogyejin/hangman-en.git`
 2. `cd hangman-en` and `npm i`
 3. Set `.env` file in root directory with `API_URL` and `API_KEY`(See here [API Ninjas](https://api-ninjas.com/).)
