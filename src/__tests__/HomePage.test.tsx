@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import HomePage from "../../pages/index";
 import mockRouter from "next-router-mock";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 
 vi.mock("next/router", () => require("next-router-mock"));
 
@@ -47,7 +48,7 @@ describe("Home Page", () => {
 
   it("should route to game page when 'Noun' is clicked", async () => {
     const user = userEvent.setup();
-    render(<HomePage />);
+    render(<HomePage />, { wrapper: MemoryRouterProvider });
 
     const dropdown = screen.getByRole("button", { name: "Select type..." });
     await user.click(dropdown);
@@ -55,10 +56,6 @@ describe("Home Page", () => {
     const nounBox = screen.getByText("Noun");
     await user.click(nounBox);
 
-    expect(mockRouter).toMatchObject({
-      asPath: "/game?type=noun",
-      pathname: "/game",
-      query: { type: "noun" },
-    });
+    expect(mockRouter.asPath).toEqual("/game?type=noun");
   });
 });
