@@ -29,7 +29,7 @@ const GameBoard = ({
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.back();
+    router.push("/");
   };
 
   if (isLoading) {
