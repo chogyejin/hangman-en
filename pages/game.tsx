@@ -28,6 +28,7 @@ const GamePage = () => {
         key={word}
         onSelect={handleSelect}
         result={guessing.result}
+        isLoading={isLoading}
       />
     </div>
   );

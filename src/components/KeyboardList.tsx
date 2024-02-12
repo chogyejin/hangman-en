@@ -6,13 +6,20 @@ import Keyboard from "@/components/Keyboard";
 interface Props {
   onSelect: (letter: string) => void;
   result: Result;
+  isLoading: boolean;
 }
 
-const KeyboardList = ({ onSelect, result }: Props) => {
+const KeyboardList = ({ onSelect, result, isLoading }: Props) => {
   return (
     <Wrapper>
       {ALPAHBET.map((char) => (
-        <Keyboard key={char} char={char} onSelect={onSelect} result={result} />
+        <Keyboard
+          key={char}
+          char={char}
+          onSelect={onSelect}
+          result={result}
+          isLoading={isLoading}
+        />
       ))}
     </Wrapper>
   );

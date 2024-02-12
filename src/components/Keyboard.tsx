@@ -6,9 +6,10 @@ interface Props {
   char: string;
   onSelect: (letter: string) => void;
   result: Result;
+  isLoading: boolean;
 }
 
-const Keyboard = ({ char, onSelect, result }: Props) => {
+const Keyboard = ({ char, onSelect, result, isLoading }: Props) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleClick = () => {
@@ -21,7 +22,11 @@ const Keyboard = ({ char, onSelect, result }: Props) => {
   };
 
   return (
-    <Button isVisible={isVisible} disabled={!isVisible} onClick={handleClick}>
+    <Button
+      isVisible={isVisible}
+      disabled={isLoading || !isVisible}
+      onClick={handleClick}
+    >
       {char}
     </Button>
   );
