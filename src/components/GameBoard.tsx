@@ -47,15 +47,13 @@ const GameBoard = ({
       </BackButton>
       <HangManCanvas count={count} />
       {result === "in-progress" ? (
-        <Wrapper>
+        <LetterList>
           {word.split("").map((letter, index) => (
-            <Letter
-              key={index}
-              letter={letter}
-              correctLetters={correctLetters}
-            />
+            <li key={index}>
+              <Letter letter={letter} correctLetters={correctLetters} />
+            </li>
           ))}
-        </Wrapper>
+        </LetterList>
       ) : (
         <Retry result={result} resetGame={resetGame} word={word} />
       )}
@@ -74,7 +72,7 @@ const Container = styled.div`
   margin-bottom: 20px;
 `;
 
-const Wrapper = styled.div`
+const LetterList = styled.ul`
   display: flex;
   align-items: flex-end;
   margin-bottom: 400px;
