@@ -11,21 +11,22 @@ interface Props {
 
 const KeyboardList = ({ onSelect, result, isLoading }: Props) => {
   return (
-    <Wrapper>
+    <ListContainer>
       {ALPAHBET.map((char) => (
-        <Keyboard
-          key={char}
-          char={char}
-          onSelect={onSelect}
-          result={result}
-          isLoading={isLoading}
-        />
+        <li key={char}>
+          <Keyboard
+            char={char}
+            onSelect={onSelect}
+            result={result}
+            isLoading={isLoading}
+          />
+        </li>
       ))}
-    </Wrapper>
+    </ListContainer>
   );
 };
 
-const Wrapper = styled.div`
+const ListContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
