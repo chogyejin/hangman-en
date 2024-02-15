@@ -47,7 +47,7 @@ const GameBoard = ({
       </BackButton>
       <HangManCanvas count={count} />
       {result === "in-progress" ? (
-        <LetterList>
+        <LetterList aria-label="letter-list">
           {word.split("").map((letter, index) => (
             <li key={index}>
               <Letter letter={letter} correctLetters={correctLetters} />

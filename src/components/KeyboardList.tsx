@@ -11,7 +11,7 @@ interface Props {
 
 const KeyboardList = ({ onSelect, result, isLoading }: Props) => {
   return (
-    <ListContainer>
+    <Container aria-label="keyboard-list">
       {ALPAHBET.map((char) => (
         <li key={char}>
           <Keyboard
@@ -22,11 +22,11 @@ const KeyboardList = ({ onSelect, result, isLoading }: Props) => {
           />
         </li>
       ))}
-    </ListContainer>
+    </Container>
   );
 };
 
-const ListContainer = styled.ul`
+const Container = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
