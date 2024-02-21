@@ -7,18 +7,19 @@ interface Props {
 }
 
 const Letter = ({ letter, correctLetters }: Props) => {
-  return <LetterBox>{correctLetters.includes(letter) ? letter : ""}</LetterBox>;
+  return (
+    <Input value={correctLetters.includes(letter) ? letter : ""} readOnly />
+  );
 };
 
-const LetterBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Input = styled.input`
+  text-align: center;
   width: 30px;
   height: 30px;
-  font-size: 30px;
+  font-size: 24px;
   margin: 0 5px;
-  border-bottom: 1px solid black;
+  border: none;
+  border-bottom: 2px solid black;
 `;
 
 export default Letter;
