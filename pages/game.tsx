@@ -3,6 +3,7 @@ import GameBoard from "@/components/GameBoard";
 import KeyboardList from "@/components/KeyboardList";
 import { useGuessing } from "@/hooks/useGuessing";
 import { useWord } from "@/hooks/useWord";
+import { isValidGameType } from "@/lib/utils/gameType";
 
 const GamePage = () => {
   const { word, isLoading, isError, refetch } = useWord();
@@ -37,12 +38,7 @@ const GamePage = () => {
 export const getServerSideProps = (async (context) => {
   const { type } = context.query;
 
-  if (
-    type === "noun" ||
-    type === "verb" ||
-    type === "adjective" ||
-    type === "adverb"
-  ) {
+  if (isValidGameType(type)) {
     return { props: {} };
   }
 
