@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import HangManCanvas from "@/components/HangManCanvas";
-import Letter from "@/components/Letter";
 import Retry from "@/components/Retry";
 import { Result } from "@/hooks/useGuessing";
-import Loading from "@/components/Loading";
 import { Count } from "@/types";
+import Loading from "@/components/Loading";
+import Letter from "@/components/Letter";
+import Button from "@/components/Button";
 
 interface Props {
   word: string;
@@ -28,10 +29,6 @@ const GameBoard = ({
 }: Props) => {
   const router = useRouter();
 
-  const handleBackClick = () => {
-    router.push("/");
-  };
-
   if (isLoading) {
     return <Loading />;
   }
@@ -42,9 +39,34 @@ const GameBoard = ({
 
   return (
     <Container>
-      <BackButton onClick={handleBackClick}>
-        <span>&#8592;</span>
+      <BackButton onClick={() => router.push("/")} aria-label="Go back">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#000"
+          strokeWidth="2"
+        >
+          <path d="M19 12H6M12 5l-7 7 7 7" />
+        </svg>
       </BackButton>
+      <ResetButton onClick={() => resetGame()} aria-label="Reset game">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#000"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38" />
+        </svg>
+      </ResetButton>
       <HangManCanvas count={count} />
       {result === "in-progress" ? (
         <div>
@@ -59,9 +81,6 @@ const GameBoard = ({
       ) : (
         <Retry result={result} resetGame={resetGame} word={word} />
       )}
-      <ResetButton onClick={resetGame}>
-        <span>&#8635;</span>
-      </ResetButton>
     </Container>
   );
 };
@@ -74,45 +93,16 @@ const Container = styled.div`
   margin-bottom: 20px;
 `;
 
-const BackButton = styled.button`
+const BackButton = styled(Button)`
   position: fixed;
   top: 20px;
   left: 20px;
-  font-size: 40px;
-  width: 60px;
-  height: 60px;
-  background-color: #fff;
-  border: 1px solid #000;
-  border-radius: 50%;
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
 `;
 
-const ResetButton = styled.button`
+const ResetButton = styled(Button)`
   position: fixed;
   top: 20px;
   right: 20px;
-  font-size: 40px;
-  width: 60px;
-  height: 60px;
-  background-color: #fff;
-  border: 1px solid #000;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-    transform: rotate(180deg);
-  }
-
-  & span {
-    position: relative;
-    bottom: 4px;
-  }
 `;
 
 export default GameBoard;
