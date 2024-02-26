@@ -1,10 +1,8 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import GamePage from "../../pages/game";
 import mockRouter from "next-router-mock";
-
-vi.mock("next/router", () => require("next-router-mock"));
 
 describe("Game Page", () => {
   it("should render A to Z letters", () => {
@@ -55,6 +53,7 @@ describe("Game Page", () => {
     mockRouter.push("/game?type=noun");
     const user = userEvent.setup();
     render(<GamePage />);
+
     await screen.findAllByRole("textbox");
 
     // word: 'hello'

@@ -1,11 +1,9 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import HomePage from "../../pages/index";
 import mockRouter from "next-router-mock";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
-
-vi.mock("next/router", () => require("next-router-mock"));
 
 describe("Home Page", () => {
   it("should render Drowdown component", () => {
