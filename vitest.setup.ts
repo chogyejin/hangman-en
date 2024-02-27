@@ -1,11 +1,16 @@
 import "vitest-canvas-mock";
-
-import { afterAll, afterEach, beforeAll, vi } from "vitest";
+import { vi, afterAll, afterEach, beforeAll, beforeEach } from "vitest";
 import { server } from "@/mocks/server";
+import mockRouter from "next-router-mock";
+
+vi.mock("next/router", () => require("next-router-mock"));
 
 beforeAll(() => {
   server.listen();
-  vi.mock("next/router", () => require("next-router-mock"));
+});
+
+beforeEach(() => {
+  mockRouter.setCurrentUrl("/");
 });
 
 afterEach(() => {
