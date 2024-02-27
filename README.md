@@ -17,7 +17,7 @@
 ## Packages
 
 - react: 18.2.0
-- next: 13.0.5 ([Pages Router](https://nextjs.org/docs/pages))
+- next: 13.5.6 ([Pages Router](https://nextjs.org/docs/pages))
 - typescript: 4.9.3
 - @emotion/react: 11.11.1
 - @emotion/styled: 11.11.0
