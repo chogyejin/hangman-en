@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import GamePage from "../../pages/game";
 import mockRouter from "next-router-mock";
+import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 
 describe("Game Page", () => {
   it("should render A to Z letters", () => {
@@ -25,10 +26,11 @@ describe("Game Page", () => {
   });
 
   it("should route to home page when the back button is clicked", async () => {
+    mockRouter.push("/game?type=noun");
     const user = userEvent.setup();
-    render(<GamePage />);
+    render(<GamePage />, { wrapper: MemoryRouterProvider });
 
-    const backButton = await screen.findByLabelText("Go back");
+    const backButton = await screen.findByRole("link");
     await user.click(backButton);
 
     expect(mockRouter.asPath).toEqual("/");
