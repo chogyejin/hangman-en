@@ -37,8 +37,8 @@ const GameBoard = ({
 
   return (
     <Container>
-      <Link href={"/"}>
-        <BackButton aria-label="Go back">
+      <Link href={"/"} aria-label="Go back">
+        <BackButton>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"

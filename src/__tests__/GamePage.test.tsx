@@ -30,7 +30,9 @@ describe("Game Page", () => {
     const user = userEvent.setup();
     render(<GamePage />, { wrapper: MemoryRouterProvider });
 
-    const backButton = await screen.findByRole("link");
+    const backButton = await screen.findByRole("link", {
+      name: "Go back",
+    });
     await user.click(backButton);
 
     expect(mockRouter.asPath).toEqual("/");
