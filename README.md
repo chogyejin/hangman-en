@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-- Play in [Here](https://hangman-es.vercel.app/)
+- Play in [Here](https://hangman-en.vercel.app/)
 
 ## How To Set In Local
 
