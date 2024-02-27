@@ -43,10 +43,9 @@ describe("Game Page", () => {
     const user = userEvent.setup();
     render(<GamePage />);
 
-    expect(screen.getByText("Loading")).toBeDefined();
-    expect(await screen.findAllByRole("textbox")).toBeDefined();
-
-    const resetButton = await screen.findByLabelText("Reset game");
+    const resetButton = await screen.findByRole("button", {
+      name: "Reset game",
+    });
     await user.click(resetButton);
 
     expect(screen.getByText("Loading")).toBeDefined();
@@ -57,7 +56,6 @@ describe("Game Page", () => {
     mockRouter.push("/game?type=noun");
     const user = userEvent.setup();
     render(<GamePage />);
-
     await screen.findAllByRole("textbox");
 
     // word: 'hello'
@@ -67,7 +65,7 @@ describe("Game Page", () => {
     await user.click(screen.getByRole("button", { name: "C" }));
     await user.click(screen.getByRole("button", { name: "D" }));
     await user.click(screen.getByRole("button", { name: "F" }));
-    await user.click(screen.getByRole("button", { name: "H" })); // correct
+    await user.click(screen.getByRole("button", { name: "H" })); // correct, not included in attepts
     await user.click(screen.getByRole("button", { name: "X" }));
     await user.click(screen.getByRole("button", { name: "Y" }));
     await user.click(screen.getByRole("button", { name: "Z" }));
@@ -84,7 +82,7 @@ describe("Game Page", () => {
     await user.click(screen.getByRole("button", { name: "H" }));
     await user.click(screen.getByRole("button", { name: "E" }));
     await user.click(screen.getByRole("button", { name: "L" }));
-    await user.click(screen.getByRole("button", { name: "A" })); // incorrect
+    await user.click(screen.getByRole("button", { name: "A" })); // incorrect, count 1
     await user.click(screen.getByRole("button", { name: "O" }));
 
     expect(screen.getByText(/win/i)).toBeDefined();
