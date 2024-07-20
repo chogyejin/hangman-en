@@ -11,7 +11,7 @@ const handler = async (
 
   const response = await getRandomword(type);
 
-  res.status(200).json({ word: response.data.word });
+  res.status(200).json({ word: response.data.word[0] });
 };
 
 export default handler;

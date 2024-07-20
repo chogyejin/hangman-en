@@ -91,6 +91,7 @@ hangman-en
 ### Get random word
 
 - Free random API provided by [API Ninjas](https://api-ninjas.com/api/randomword)
+  - In the previous API specification, a string was returned, but now a parameter called `limit` has been added(default 1) and an array of strings is returned.
 - By default API key is exposed in request headers(`x-api-key`), we can hide my own API key using Next.js's [API Routes](https://nextjs.org/docs/api-routes/introduction)
 
 - Proper nouns are so hard to guess, so check the response and re-request by axios instance`s intercepter.

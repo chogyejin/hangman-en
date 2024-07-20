@@ -11,7 +11,7 @@ instance.interceptors.response.use(
   async (response) => {
     const { word } = response.data;
 
-    if (isProperNoun(word)) {
+    if (isProperNoun(word[0])) {
       const type = response.config.url?.split("type=")[1] || "";
 
       const newResponse = await getRandomword(type);
